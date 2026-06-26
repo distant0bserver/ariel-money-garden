@@ -124,6 +124,18 @@
     padding: 6px 14px;
     font-size: 0.9rem;
     white-space: nowrap;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .chip:hover {
+    background: var(--pink);
+    transform: translateY(-2px);
+  }
+  .chip::after {
+    content: " 🔎";
+    font-size: 0.8em;
   }
 
   .calc-grid {
@@ -240,8 +252,8 @@
     <p class="desc">Low-risk, sleep-easy money. Good for an emergency fund or money you want safe but still growing
     a little faster than a checking account.</p>
     <div class="allocation">
-      <span class="chip">60% High-Yield Savings (~4.5% APY)</span>
-      <span class="chip">40% Treasury Bonds / Bond Fund (~4% avg)</span>
+      <a class="chip" href="examples.html#high-yield-savings" target="_blank" rel="noopener">60% High-Yield Savings (~4.5% APY)</a>
+      <a class="chip" href="examples.html#treasury-bonds" target="_blank" rel="noopener">40% Treasury Bonds / Bond Fund (~4% avg)</a>
     </div>
     <div class="calc-grid">
       <div class="field"><label>Starting Amount ($)</label><input type="number" id="p1-principal" value="100000"></div>
@@ -260,9 +272,9 @@
     <p class="desc">Medium-safe, a step up in growth. Mostly index funds — boring, diversified, historically solid.
     Good for a 5-15 year goal, like a house down payment or "I just want it to grow" money.</p>
     <div class="allocation">
-      <span class="chip">50% S&P 500 Index Fund</span>
-      <span class="chip">30% Bond Index Fund</span>
-      <span class="chip">20% CDs / Money Market</span>
+      <a class="chip" href="examples.html#sp500-index" target="_blank" rel="noopener">50% S&P 500 Index Fund</a>
+      <a class="chip" href="examples.html#bond-index" target="_blank" rel="noopener">30% Bond Index Fund</a>
+      <a class="chip" href="examples.html#cds-money-market" target="_blank" rel="noopener">20% CDs / Money Market</a>
     </div>
     <div class="calc-grid">
       <div class="field"><label>Starting Amount ($)</label><input type="number" id="p2-principal" value="100000"></div>
@@ -281,9 +293,9 @@
     <p class="desc">Longer time horizon, slightly more growth-tilted but still diversified and steady. For
     retirement-style money you won't touch for 20-30 years. Slow burn, big payoff — just like the cigar.</p>
     <div class="allocation">
-      <span class="chip">70% Total Stock Market Index Fund</span>
-      <span class="chip">20% International Index Fund</span>
-      <span class="chip">10% Bond Index Fund</span>
+      <a class="chip" href="examples.html#total-stock-market" target="_blank" rel="noopener">70% Total Stock Market Index Fund</a>
+      <a class="chip" href="examples.html#international-index" target="_blank" rel="noopener">20% International Index Fund</a>
+      <a class="chip" href="examples.html#bond-index" target="_blank" rel="noopener">10% Bond Index Fund</a>
     </div>
     <div class="calc-grid">
       <div class="field"><label>Starting Amount ($)</label><input type="number" id="p3-principal" value="100000"></div>

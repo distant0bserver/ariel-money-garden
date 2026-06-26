@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examples — Ariel's Money Garden 🍉💰</title>
+<style>
+  :root {
+    --purple: #6b1f8c;
+    --purple-dark: #3a0d52;
+    --green: #2ecc71;
+    --green-dark: #1a7a3c;
+    --pink: #ff6fa5;
+    --gold: #ffd700;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple) 40%, var(--green-dark) 100%);
+    color: white;
+  }
+  header {
+    text-align: center;
+    padding: 50px 20px 20px;
+  }
+  h1 {
+    font-size: 2.6rem;
+    text-shadow: 4px 4px 0 var(--green-dark), -2px -2px 0 var(--pink);
+    margin: 0;
+  }
+  .subtitle {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--gold);
+    text-decoration: none;
+    border: 2px dashed var(--gold);
+    border-radius: 999px;
+    padding: 8px 18px;
+  }
+  .back-link:hover { background: rgba(255,215,0,0.15); }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+  .intro-box {
+    background: rgba(0,0,0,0.35);
+    border: 4px dashed var(--gold);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .category {
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    border: 3px solid var(--green);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.35);
+    padding: 25px 28px;
+    margin-bottom: 35px;
+    scroll-margin-top: 20px;
+  }
+  .category h2 {
+    color: var(--gold);
+    margin-top: 0;
+  }
+  .category p.what {
+    margin-top: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  th {
+    color: var(--pink);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+  td.ticker {
+    font-weight: bold;
+    color: var(--green);
+  }
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🍉 EXAMPLE INVESTMENTS 🍉</h1>
+  <div class="subtitle">real, well-known examples for each category mentioned in your portfolios</div>
+  <a class="back-link" href="index.html">⬅ back to the Money Garden</a>
+</header>
+
+<main>
+  <div class="intro-box">
+    <p>⚠️ These are widely-known, low-cost examples of each asset category — not a personal
+    recommendation, and not professional financial advice. Expense ratios, rates, and fund
+    availability change over time, so double-check current numbers before buying anything.
+    Always confirm with a real fee-only fiduciary advisor or do your own research before
+    investing real money.</p>
+  </div>
+
+  <section class="category" id="high-yield-savings">
+    <h2>💰 High-Yield Savings</h2>
+    <p class="what">FDIC-insured savings accounts at online banks, usually paying much more
+    interest than a traditional brick-and-mortar bank.</p>
+    <table>
+      <tr><th>Bank</th><th>Type</th><th>Notes</th></tr>
+      <tr><td class="ticker">Ally Bank</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
+      <tr><td class="ticker">Marcus by Goldman Sachs</td><td>Online Savings Account</td><td>No fees, FDIC insured</td></tr>
+      <tr><td class="ticker">Discover Online Savings</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
+      <tr><td class="ticker">SoFi Checking & Savings</td><td>Online Savings Account</td><td>Higher rate with direct deposit, FDIC insured</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="treasury-bonds">
+    <h2>🏛️ Treasury Bonds / Bond Fund</h2>
+    <p class="what">Backed by the U.S. government — either buy individual Treasuries directly,
+    or hold a fund made up of short-term Treasuries.</p>
+    <table>
+      <tr><th>Ticker / Source</th><th>Type</th><th>Notes</th></tr>
+      <tr><td class="ticker">TreasuryDirect.gov</td><td>Individual T-Bills / T-Notes / I-Bonds</td><td>Buy directly from the U.S. Treasury, no middleman fees</td></tr>
+      <tr><td class="ticker">SGOV</td><td>iShares 0-3 Month Treasury Bond ETF</td><td>Ultra short-term, very low volatility</td></tr>
+      <tr><td class="ticker">BIL</td><td>SPDR Bloomberg 1-3 Month T-Bill ETF</td><td>Ultra short-term Treasury exposure</td></tr>
+      <tr><td class="ticker">VGSH</td><td>Vanguard Short-Term Treasury ETF</td><td>Short-term Treasury bond fund</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="sp500-index">
+    <h2>📈 S&P 500 Index Fund</h2>
+    <p class="what">Tracks the 500 largest U.S. companies — a classic, low-cost way to own a
+    slice of the whole large-cap U.S. market.</p>
+    <table>
+      <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
+      <tr><td class="ticker">VOO</td><td>Vanguard S&P 500 ETF</td><td>Very low expense ratio</td></tr>
+      <tr><td class="ticker">IVV</td><td>iShares Core S&P 500 ETF</td><td>Very low expense ratio</td></tr>
+      <tr><td class="ticker">SPY</td><td>SPDR S&P 500 ETF Trust</td><td>The original S&P 500 ETF, highly liquid</td></tr>
+      <tr><td class="ticker">FXAIX</td><td>Fidelity 500 Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="bond-index">
+    <h2>🧾 Bond Index Fund</h2>
+    <p class="what">A broad mix of U.S. government and investment-grade corporate bonds —
+    used to smooth out the bumpier ride of stocks.</p>
+    <table>
+      <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
+      <tr><td class="ticker">BND</td><td>Vanguard Total Bond Market ETF</td><td>Broad U.S. bond market exposure</td></tr>
+      <tr><td class="ticker">AGG</td><td>iShares Core U.S. Aggregate Bond ETF</td><td>Broad U.S. bond market exposure</td></tr>
+      <tr><td class="ticker">FXNAX</td><td>Fidelity U.S. Bond Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="cds-money-market">
+    <h2>🏦 CDs / Money Market</h2>
+    <p class="what">Certificates of Deposit lock your money for a set term at a fixed rate;
+    money market funds are cash-like and very low risk.</p>
+    <table>
+      <tr><th>Ticker / Source</th><th>Type</th><th>Notes</th></tr>
+      <tr><td class="ticker">VMFXX</td><td>Vanguard Federal Money Market Fund</td><td>Cash-like, very low risk</td></tr>
+      <tr><td class="ticker">SPAXX</td><td>Fidelity Government Money Market Fund</td><td>Cash-like, very low risk</td></tr>
+      <tr><td class="ticker">Brokered CDs</td><td>Available through Fidelity / Schwab / Vanguard</td><td>FDIC insured, fixed term & rate</td></tr>
+      <tr><td class="ticker">Online bank CDs</td><td>Ally / Marcus / Discover</td><td>FDIC insured, fixed term & rate</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="total-stock-market">
+    <h2>🌎 Total Stock Market Index Fund</h2>
+    <p class="what">Owns basically the entire U.S. stock market — large, mid, and small
+    companies all in one fund.</p>
+    <table>
+      <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
+      <tr><td class="ticker">VTI</td><td>Vanguard Total Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
+      <tr><td class="ticker">ITOT</td><td>iShares Core S&P Total U.S. Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
+      <tr><td class="ticker">FSKAX</td><td>Fidelity Total Market Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+    </table>
+  </section>
+
+  <section class="category" id="international-index">
+    <h2>🗺️ International Index Fund</h2>
+    <p class="what">Diversifies outside the U.S. into developed and emerging markets, so
+    you're not betting everything on one country.</p>
+    <table>
+      <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
+      <tr><td class="ticker">VXUS</td><td>Vanguard Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
+      <tr><td class="ticker">IXUS</td><td>iShares Core MSCI Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
+      <tr><td class="ticker">FTIHX</td><td>Fidelity Total International Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+    </table>
+  </section>
+</main>
+
+<footer>
+  🍉 same disclaimer applies here too — research before you invest 🍉
+</footer>
+
+</body>
+</html>
