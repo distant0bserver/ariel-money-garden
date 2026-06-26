@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariel's Money Garden 🍉💰</title>
+<style>
+  :root {
+    --purple: #6b1f8c;
+    --purple-dark: #3a0d52;
+    --green: #2ecc71;
+    --green-dark: #1a7a3c;
+    --pink: #ff6fa5;
+    --gold: #ffd700;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple) 40%, var(--green-dark) 100%);
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ---------- floating background watermelons ---------- */
+  .bg-emoji {
+    position: fixed;
+    top: -60px;
+    font-size: 2.5rem;
+    animation: fall linear infinite;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+  }
+
+  header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    text-shadow: 4px 4px 0 var(--green-dark), -2px -2px 0 var(--pink);
+    margin: 0;
+    animation: wiggle 2.5s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-top: 10px;
+  }
+
+  .melon-divider {
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+    letter-spacing: 12px;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .intro-box {
+    background: rgba(0,0,0,0.35);
+    border: 4px dashed var(--gold);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .portfolio {
+    background: rgba(255,255,255,0.08);
+    border-radius: 24px;
+    border: 3px solid var(--green);
+    box-shadow: 0 0 25px rgba(46, 204, 113, 0.4);
+    padding: 30px;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio h2 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-top: 0;
+  }
+
+  .portfolio p.desc {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .allocation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0 25px;
+  }
+
+  .chip {
+    background: var(--purple);
+    border: 2px solid var(--pink);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: var(--gold);
+  }
+
+  .field input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .calc-btn {
+    background: linear-gradient(45deg, var(--green), var(--gold));
+    border: none;
+    color: #1a0a26;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 12px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s;
+    box-shadow: 0 5px 0 var(--purple-dark);
+  }
+  .calc-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--purple-dark);
+  }
+
+  .result {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--gold);
+    min-height: 1.6em;
+  }
+
+  .anim-zone {
+    position: relative;
+    height: 0;
+    overflow: visible;
+  }
+
+  .flying {
+    position: absolute;
+    font-size: 4.2rem;
+    pointer-events: none;
+    z-index: 50;
+    will-change: transform, opacity;
+  }
+
+  @keyframes flyArc {
+    0% { transform: translate(0, 0) rotate(0deg) scale(0.5); opacity: 0; }
+    12% { opacity: 1; }
+    35% { transform: translate(calc(var(--dx) * 0.35), var(--bounce)) rotate(calc(var(--rot) * 0.4)) scale(1.3); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--fall)) rotate(var(--rot)) scale(0.9); opacity: 0; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 0.95rem;
+    color: var(--gold);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-melon {
+    font-size: 4rem;
+    text-align: center;
+    margin: 10px 0;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="bg-layer"></div>
+
+<header>
+  <div class="hero-melon">🍉💸🍉</div>
+  <h1>ARIEL'S MONEY GARDEN</h1>
+  <div class="subtitle">grow that bag safely, sis 🌱💰</div>
+  <div class="melon-divider">🍉🟣💚🍉🟣💚🍉</div>
+</header>
+
+<main>
+  <div class="intro-box">
+    <p>Okay Ariel, listen up 👀 — you got money to invest, and we are NOT about to let it sit around doing nothing
+    like a watermelon on a porch in July. Below are <strong>three safe, boring-on-purpose</strong> example
+    portfolios. Boring is good when it comes to money. Punch in your numbers, hit the button, and let
+    the chaos (and the compounding) begin.</p>
+  </div>
+
+  <!-- PORTFOLIO 1 -->
+  <section class="portfolio" id="portfolio1">
+    <h2>🐒 The "Don't Touch It" Portfolio</h2>
+    <p class="desc">Low-risk, sleep-easy money. Good for an emergency fund or money you want safe but still growing
+    a little faster than a checking account.</p>
+    <div class="allocation">
+      <span class="chip">60% High-Yield Savings (~4.5% APY)</span>
+      <span class="chip">40% Treasury Bonds / Bond Fund (~4% avg)</span>
+    </div>
+    <div class="calc-grid">
+      <div class="field"><label>Starting Amount ($)</label><input type="number" id="p1-principal" value="100000"></div>
+      <div class="field"><label>Monthly Add ($)</label><input type="number" id="p1-monthly" value="1000"></div>
+      <div class="field"><label>Annual Rate (%)</label><input type="number" id="p1-rate" value="4.3" step="0.1"></div>
+      <div class="field"><label>Years</label><input type="number" id="p1-years" value="10"></div>
+    </div>
+    <button class="calc-btn" data-portfolio="p1" data-anim="monkey">Calculate & Unleash the Monkeys 🐒💵</button>
+    <div class="result" id="p1-result"></div>
+    <div class="anim-zone" id="p1-anim"></div>
+  </section>
+
+  <!-- PORTFOLIO 2 -->
+  <section class="portfolio" id="portfolio2">
+    <h2>🛞 The "Cruisin' Comfortably" Portfolio</h2>
+    <p class="desc">Medium-safe, a step up in growth. Mostly index funds — boring, diversified, historically solid.
+    Good for a 5-15 year goal, like a house down payment or "I just want it to grow" money.</p>
+    <div class="allocation">
+      <span class="chip">50% S&P 500 Index Fund</span>
+      <span class="chip">30% Bond Index Fund</span>
+      <span class="chip">20% CDs / Money Market</span>
+    </div>
+    <div class="calc-grid">
+      <div class="field"><label>Starting Amount ($)</label><input type="number" id="p2-principal" value="100000"></div>
+      <div class="field"><label>Monthly Add ($)</label><input type="number" id="p2-monthly" value="1000"></div>
+      <div class="field"><label>Annual Rate (%)</label><input type="number" id="p2-rate" value="7" step="0.1"></div>
+      <div class="field"><label>Years</label><input type="number" id="p2-years" value="15"></div>
+    </div>
+    <button class="calc-btn" data-portfolio="p2" data-anim="rim">Calculate & Spin the Rims 🛞✨</button>
+    <div class="result" id="p2-result"></div>
+    <div class="anim-zone" id="p2-anim"></div>
+  </section>
+
+  <!-- PORTFOLIO 3 -->
+  <section class="portfolio" id="portfolio3">
+    <h2>🚬🍾 The "Grown Folks Business" Portfolio</h2>
+    <p class="desc">Longer time horizon, slightly more growth-tilted but still diversified and steady. For
+    retirement-style money you won't touch for 20-30 years. Slow burn, big payoff — just like the cigar.</p>
+    <div class="allocation">
+      <span class="chip">70% Total Stock Market Index Fund</span>
+      <span class="chip">20% International Index Fund</span>
+      <span class="chip">10% Bond Index Fund</span>
+    </div>
+    <div class="calc-grid">
+      <div class="field"><label>Starting Amount ($)</label><input type="number" id="p3-principal" value="100000"></div>
+      <div class="field"><label>Monthly Add ($)</label><input type="number" id="p3-monthly" value="1000"></div>
+      <div class="field"><label>Annual Rate (%)</label><input type="number" id="p3-rate" value="8" step="0.1"></div>
+      <div class="field"><label>Years</label><input type="number" id="p3-years" value="25"></div>
+    </div>
+    <button class="calc-btn" data-portfolio="p3" data-anim="combo">Calculate & Smoke It Up 🍾🚬💵</button>
+    <div class="result" id="p3-result"></div>
+    <div class="anim-zone" id="p3-anim"></div>
+  </section>
+
+  <div class="intro-box">
+    <p>⚠️ <strong>Real talk disclaimer:</strong> this is not professional financial advice — it's for laughs and
+    napkin math. Rates of return are historical averages, not guarantees. Before you actually move real money,
+    run it by a real fee-only fiduciary advisor or do your own research. This page is for fun and education,
+    not a substitute for professional guidance.</p>
+  </div>
+</main>
+
+<footer>
+  made with 💜💚 and way too many watermelon emojis, just for you Ariel 🍉
+</footer>
+
+<audio id="sfx-money" src="sounds/got-your-money.mp3" preload="auto"></audio>
+<audio id="sfx-damn" src="sounds/damn.mp3" preload="auto"></audio>
+
+<script>
+  // ---------- floating background watermelons/cash ----------
+  const bgEmojis = ['🍉','💵','💰','🍉','💸','🍉'];
+  const bgLayer = document.getElementById('bg-layer');
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'bg-emoji';
+    el.textContent = bgEmojis[Math.floor(Math.random() * bgEmojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (6 + Math.random() * 8) + 's';
+    el.style.animationDelay = (Math.random() * 8) + 's';
+    el.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+    bgLayer.appendChild(el);
+  }
+
+  // ---------- compounding interest math ----------
+  function compound(principal, monthly, ratePct, years) {
+    const r = ratePct / 100 / 12;
+    const n = years * 12;
+    let balance = principal;
+    const totalContrib = principal + monthly * n;
+    if (r === 0) {
+      balance = principal + monthly * n;
+    } else {
+      balance = principal * Math.pow(1 + r, n);
+      balance += monthly * ((Math.pow(1 + r, n) - 1) / r);
+    }
+    return { balance, totalContrib, growth: balance - totalContrib };
+  }
+
+  function fmt(num) {
+    return num.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  }
+
+  // ---------- animation spawners ----------
+  // emoji start at the bottom of the portfolio card, bounce up to the top, then fall back down out the bottom
+  function spawnFlying(card, emoji, count, duration, spreadX, rotateDeg) {
+    const cardWidth = card.clientWidth;
+    const cardHeight = card.clientHeight;
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement('span');
+      span.className = 'flying';
+      span.textContent = emoji;
+      const startX = Math.random() * cardWidth;
+      const dx = (Math.random() - 0.5) * spreadX;
+      const bounce = -(cardHeight + 40 + Math.random() * 60);
+      const fall = cardHeight + 150 + Math.random() * 60;
+      const rot = (Math.random() - 0.5) * 2 * rotateDeg;
+      span.style.left = startX + 'px';
+      span.style.top = cardHeight + 'px';
+      span.style.setProperty('--dx', dx + 'px');
+      span.style.setProperty('--bounce', bounce + 'px');
+      span.style.setProperty('--fall', fall + 'px');
+      span.style.setProperty('--rot', rot + 'deg');
+      span.style.animation = `flyArc ${duration}s ease-in forwards`;
+      span.style.animationDelay = (Math.random() * 0.4) + 's';
+      card.appendChild(span);
+      setTimeout(() => span.remove(), (duration + 1) * 1000);
+    }
+  }
+
+  function playAnimation(type, card) {
+    if (type === 'monkey') {
+      spawnFlying(card, '🐒', 6, 3.2, 250, 360);
+      spawnFlying(card, '💵', 14, 3.6, 350, 540);
+    } else if (type === 'rim') {
+      spawnFlying(card, '🛞', 8, 4, 200, 1800);
+      spawnFlying(card, '💲', 10, 2.6, 150, 360);
+    } else if (type === 'combo') {
+      spawnFlying(card, '🚬', 5, 4.2, 120, 180);
+      spawnFlying(card, '🍾', 4, 3, 150, 200);
+      spawnFlying(card, '💵', 20, 3.6, 300, 540);
+      spawnFlying(card, '💲', 12, 2.8, 200, 360);
+    }
+  }
+
+  function playSounds() {
+    const money = document.getElementById('sfx-money');
+    const damn = document.getElementById('sfx-damn');
+    money.currentTime = 0;
+    money.play().catch(() => {});
+    setTimeout(() => {
+      damn.currentTime = 0;
+      damn.play().catch(() => {});
+    }, 700);
+  }
+
+  document.querySelectorAll('.calc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.portfolio;
+      const principal = parseFloat(document.getElementById(`${id}-principal`).value) || 0;
+      const monthly = parseFloat(document.getElementById(`${id}-monthly`).value) || 0;
+      const rate = parseFloat(document.getElementById(`${id}-rate`).value) || 0;
+      const years = parseFloat(document.getElementById(`${id}-years`).value) || 0;
+
+      const { balance, totalContrib, growth } = compound(principal, monthly, rate, years);
+      const resultEl = document.getElementById(`${id}-result`);
+      resultEl.innerHTML = `In ${years} years: <span style="color:#2ecc71">${fmt(balance)}</span><br>
+        <span style="font-size:0.85rem; color:#fff;">You put in ${fmt(totalContrib)} — the magic of compounding made you ${fmt(growth)} 🍉</span>`;
+
+      const card = document.getElementById(`portfolio${id.slice(1)}`);
+      playAnimation(btn.dataset.anim, card);
+      playSounds();
+    });
+  });
+</script>
+
+</body>
+</html>
