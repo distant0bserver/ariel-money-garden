@@ -92,6 +92,65 @@
     font-weight: bold;
     color: var(--green);
   }
+  tr.ticker-row {
+    cursor: pointer;
+  }
+  tr.ticker-row:hover {
+    background: rgba(255,255,255,0.08);
+  }
+  tr.ticker-row td:first-child::before {
+    content: "▶ ";
+    display: inline-block;
+    color: var(--gold);
+    transition: transform 0.15s;
+    transform-origin: center;
+  }
+  tr.ticker-row.open td:first-child::before {
+    transform: rotate(90deg);
+  }
+  tr.detail-row td {
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 0;
+  }
+  .detail-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    padding: 0 16px;
+  }
+  tr.detail-row.open .detail-inner {
+    padding: 14px 16px;
+  }
+  .hist-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .hist-stat {
+    background: var(--purple);
+    border: 2px solid var(--pink);
+    border-radius: 12px;
+    padding: 8px 14px;
+    min-width: 90px;
+    text-align: center;
+  }
+  .hist-stat .label {
+    font-size: 0.75rem;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .hist-stat .value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--green);
+  }
+  .hist-note {
+    font-size: 0.85rem;
+    color: #f0f0f0;
+    margin: 0;
+  }
   footer {
     text-align: center;
     padding: 30px;
@@ -103,17 +162,18 @@
 
 <header>
   <h1>🍉 EXAMPLE INVESTMENTS 🍉</h1>
-  <div class="subtitle">real, well-known examples for each category mentioned in your portfolios</div>
+  <div class="subtitle">real, well-known examples for each category — click a row for historical numbers</div>
   <a class="back-link" href="index.html">⬅ back to the Money Garden</a>
 </header>
 
 <main>
   <div class="intro-box">
     <p>⚠️ These are widely-known, low-cost examples of each asset category — not a personal
-    recommendation, and not professional financial advice. Expense ratios, rates, and fund
-    availability change over time, so double-check current numbers before buying anything.
-    Always confirm with a real fee-only fiduciary advisor or do your own research before
-    investing real money.</p>
+    recommendation, and not professional financial advice. The historical numbers in the
+    dropdowns are <strong>rough, illustrative approximations</strong> of trailing annualized
+    returns/rates as of recent years — actual numbers move around and should be checked on
+    the fund provider's site or a source like Morningstar before you invest. Always confirm
+    with a real fee-only fiduciary advisor or do your own research before investing real money.</p>
   </div>
 
   <section class="category" id="high-yield-savings">
@@ -122,10 +182,14 @@
     interest than a traditional brick-and-mortar bank.</p>
     <table>
       <tr><th>Bank</th><th>Type</th><th>Notes</th></tr>
-      <tr><td class="ticker">Ally Bank</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
-      <tr><td class="ticker">Marcus by Goldman Sachs</td><td>Online Savings Account</td><td>No fees, FDIC insured</td></tr>
-      <tr><td class="ticker">Discover Online Savings</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
-      <tr><td class="ticker">SoFi Checking & Savings</td><td>Online Savings Account</td><td>Higher rate with direct deposit, FDIC insured</td></tr>
+      <tr class="ticker-row" data-1y="~4.3% APY" data-5y="~2.1% avg APY" data-10y="~1.3% avg APY" data-note="Online savings rates track the Fed funds rate closely — they were near 0% in 2020-21 and rose sharply through 2023.">
+        <td class="ticker">Ally Bank</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
+      <tr class="ticker-row" data-1y="~4.1% APY" data-5y="~2.0% avg APY" data-10y="~1.2% avg APY" data-note="No-fee online savings, rate moves with broader interest rate environment.">
+        <td class="ticker">Marcus by Goldman Sachs</td><td>Online Savings Account</td><td>No fees, FDIC insured</td></tr>
+      <tr class="ticker-row" data-1y="~4.0% APY" data-5y="~2.0% avg APY" data-10y="~1.2% avg APY" data-note="Long-running online savings product, historically competitive with Ally/Marcus.">
+        <td class="ticker">Discover Online Savings</td><td>Online Savings Account</td><td>No minimum balance, FDIC insured</td></tr>
+      <tr class="ticker-row" data-1y="~4.3-4.6% APY" data-5y="~2.0% avg APY" data-10y="n/a (newer product)" data-note="Rate boost requires qualifying direct deposit; without it, rate is lower.">
+        <td class="ticker">SoFi Checking & Savings</td><td>Online Savings Account</td><td>Higher rate with direct deposit, FDIC insured</td></tr>
     </table>
   </section>
 
@@ -135,10 +199,14 @@
     or hold a fund made up of short-term Treasuries.</p>
     <table>
       <tr><th>Ticker / Source</th><th>Type</th><th>Notes</th></tr>
-      <tr><td class="ticker">TreasuryDirect.gov</td><td>Individual T-Bills / T-Notes / I-Bonds</td><td>Buy directly from the U.S. Treasury, no middleman fees</td></tr>
-      <tr><td class="ticker">SGOV</td><td>iShares 0-3 Month Treasury Bond ETF</td><td>Ultra short-term, very low volatility</td></tr>
-      <tr><td class="ticker">BIL</td><td>SPDR Bloomberg 1-3 Month T-Bill ETF</td><td>Ultra short-term Treasury exposure</td></tr>
-      <tr><td class="ticker">VGSH</td><td>Vanguard Short-Term Treasury ETF</td><td>Short-term Treasury bond fund</td></tr>
+      <tr class="ticker-row" data-1y="0% - 9.6% (varies)" data-5y="~4.5% avg" data-10y="~2.5% avg" data-note="I-Bond rate is tied to inflation and resets every 6 months — it spiked during the 2021-2022 inflation surge and has cooled since.">
+        <td class="ticker">TreasuryDirect.gov</td><td>Individual T-Bills / T-Notes / I-Bonds</td><td>Buy directly from the U.S. Treasury, no middleman fees</td></tr>
+      <tr class="ticker-row" data-1y="~5.0%" data-5y="~2.3% avg" data-10y="n/a (launched 2020)" data-note="Tracks ultra-short Treasury yields almost exactly — was near 0% in 2020-21, jumped with rate hikes.">
+        <td class="ticker">SGOV</td><td>iShares 0-3 Month Treasury Bond ETF</td><td>Ultra short-term, very low volatility</td></tr>
+      <tr class="ticker-row" data-1y="~5.0%" data-5y="~1.8% avg" data-10y="~1.2% avg" data-note="Very similar profile to SGOV — ultra short-term Treasury exposure.">
+        <td class="ticker">BIL</td><td>SPDR Bloomberg 1-3 Month T-Bill ETF</td><td>Ultra short-term Treasury exposure</td></tr>
+      <tr class="ticker-row" data-1y="~4.5%" data-5y="~1.3% avg" data-10y="~1.0% avg" data-note="Slightly longer duration than SGOV/BIL, so a bit more price movement.">
+        <td class="ticker">VGSH</td><td>Vanguard Short-Term Treasury ETF</td><td>Short-term Treasury bond fund</td></tr>
     </table>
   </section>
 
@@ -148,10 +216,14 @@
     slice of the whole large-cap U.S. market.</p>
     <table>
       <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
-      <tr><td class="ticker">VOO</td><td>Vanguard S&P 500 ETF</td><td>Very low expense ratio</td></tr>
-      <tr><td class="ticker">IVV</td><td>iShares Core S&P 500 ETF</td><td>Very low expense ratio</td></tr>
-      <tr><td class="ticker">SPY</td><td>SPDR S&P 500 ETF Trust</td><td>The original S&P 500 ETF, highly liquid</td></tr>
-      <tr><td class="ticker">FXAIX</td><td>Fidelity 500 Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+      <tr class="ticker-row" data-1y="~24%" data-5y="~14-15% avg/yr" data-10y="~12-13% avg/yr" data-note="As with all four S&P 500 funds here, returns are nearly identical since they track the same index — differences are just expense ratio and tiny tracking error.">
+        <td class="ticker">VOO</td><td>Vanguard S&P 500 ETF</td><td>Very low expense ratio</td></tr>
+      <tr class="ticker-row" data-1y="~24%" data-5y="~14-15% avg/yr" data-10y="~12-13% avg/yr" data-note="Performance essentially mirrors VOO/SPY — same underlying index.">
+        <td class="ticker">IVV</td><td>iShares Core S&P 500 ETF</td><td>Very low expense ratio</td></tr>
+      <tr class="ticker-row" data-1y="~24%" data-5y="~14-15% avg/yr" data-10y="~12-13% avg/yr" data-note="The original, most-traded S&P 500 ETF — slightly higher expense ratio than VOO/IVV.">
+        <td class="ticker">SPY</td><td>SPDR S&P 500 ETF Trust</td><td>The original S&P 500 ETF, highly liquid</td></tr>
+      <tr class="ticker-row" data-1y="~24%" data-5y="~14-15% avg/yr" data-10y="~12-13% avg/yr" data-note="Mutual fund equivalent of the same index — zero minimum at Fidelity.">
+        <td class="ticker">FXAIX</td><td>Fidelity 500 Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
     </table>
   </section>
 
@@ -161,9 +233,12 @@
     used to smooth out the bumpier ride of stocks.</p>
     <table>
       <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
-      <tr><td class="ticker">BND</td><td>Vanguard Total Bond Market ETF</td><td>Broad U.S. bond market exposure</td></tr>
-      <tr><td class="ticker">AGG</td><td>iShares Core U.S. Aggregate Bond ETF</td><td>Broad U.S. bond market exposure</td></tr>
-      <tr><td class="ticker">FXNAX</td><td>Fidelity U.S. Bond Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+      <tr class="ticker-row" data-1y="~3-4%" data-5y="~0-1% avg/yr" data-10y="~1.5-2% avg/yr" data-note="Bond funds had a rough stretch in 2022 as rates rose fast, pulling down the 5-year average — yields are more attractive now.">
+        <td class="ticker">BND</td><td>Vanguard Total Bond Market ETF</td><td>Broad U.S. bond market exposure</td></tr>
+      <tr class="ticker-row" data-1y="~3-4%" data-5y="~0-1% avg/yr" data-10y="~1.5-2% avg/yr" data-note="Tracks essentially the same broad bond index as BND.">
+        <td class="ticker">AGG</td><td>iShares Core U.S. Aggregate Bond ETF</td><td>Broad U.S. bond market exposure</td></tr>
+      <tr class="ticker-row" data-1y="~3-4%" data-5y="~0-1% avg/yr" data-10y="~1.5-2% avg/yr" data-note="Mutual fund version tracking the same aggregate bond index.">
+        <td class="ticker">FXNAX</td><td>Fidelity U.S. Bond Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
     </table>
   </section>
 
@@ -173,10 +248,14 @@
     money market funds are cash-like and very low risk.</p>
     <table>
       <tr><th>Ticker / Source</th><th>Type</th><th>Notes</th></tr>
-      <tr><td class="ticker">VMFXX</td><td>Vanguard Federal Money Market Fund</td><td>Cash-like, very low risk</td></tr>
-      <tr><td class="ticker">SPAXX</td><td>Fidelity Government Money Market Fund</td><td>Cash-like, very low risk</td></tr>
-      <tr><td class="ticker">Brokered CDs</td><td>Available through Fidelity / Schwab / Vanguard</td><td>FDIC insured, fixed term & rate</td></tr>
-      <tr><td class="ticker">Online bank CDs</td><td>Ally / Marcus / Discover</td><td>FDIC insured, fixed term & rate</td></tr>
+      <tr class="ticker-row" data-1y="~5.0%" data-5y="~2.2% avg/yr" data-10y="~1.4% avg/yr" data-note="Money market yields were near zero for most of 2009-2021, then rose quickly with Fed rate hikes.">
+        <td class="ticker">VMFXX</td><td>Vanguard Federal Money Market Fund</td><td>Cash-like, very low risk</td></tr>
+      <tr class="ticker-row" data-1y="~4.9%" data-5y="~2.1% avg/yr" data-10y="~1.3% avg/yr" data-note="Very similar profile to VMFXX — government money market fund.">
+        <td class="ticker">SPAXX</td><td>Fidelity Government Money Market Fund</td><td>Cash-like, very low risk</td></tr>
+      <tr class="ticker-row" data-1y="~4.5-5.0% (1yr term)" data-5y="varies by term" data-10y="varies by term" data-note="Brokered CD rates depend heavily on the term length and when you buy — shop the live rate sheet at purchase time.">
+        <td class="ticker">Brokered CDs</td><td>Available through Fidelity / Schwab / Vanguard</td><td>FDIC insured, fixed term & rate</td></tr>
+      <tr class="ticker-row" data-1y="~4.0-4.5% (1yr term)" data-5y="varies by term" data-10y="varies by term" data-note="Online bank CD rates are usually a bit better than big traditional banks, but vary by promotion and term.">
+        <td class="ticker">Online bank CDs</td><td>Ally / Marcus / Discover</td><td>FDIC insured, fixed term & rate</td></tr>
     </table>
   </section>
 
@@ -186,9 +265,12 @@
     companies all in one fund.</p>
     <table>
       <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
-      <tr><td class="ticker">VTI</td><td>Vanguard Total Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
-      <tr><td class="ticker">ITOT</td><td>iShares Core S&P Total U.S. Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
-      <tr><td class="ticker">FSKAX</td><td>Fidelity Total Market Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+      <tr class="ticker-row" data-1y="~23%" data-5y="~13-14% avg/yr" data-10y="~11-12% avg/yr" data-note="Slightly more diversified than the S&P 500 (includes mid/small caps), so returns track closely but not identically.">
+        <td class="ticker">VTI</td><td>Vanguard Total Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
+      <tr class="ticker-row" data-1y="~23%" data-5y="~13-14% avg/yr" data-10y="~11-12% avg/yr" data-note="Tracks a similar total-market index to VTI.">
+        <td class="ticker">ITOT</td><td>iShares Core S&P Total U.S. Stock Market ETF</td><td>Whole U.S. market in one fund</td></tr>
+      <tr class="ticker-row" data-1y="~23%" data-5y="~13-14% avg/yr" data-10y="~11-12% avg/yr" data-note="Mutual fund version of the same total-market exposure.">
+        <td class="ticker">FSKAX</td><td>Fidelity Total Market Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
     </table>
   </section>
 
@@ -198,9 +280,12 @@
     you're not betting everything on one country.</p>
     <table>
       <tr><th>Ticker</th><th>Fund</th><th>Notes</th></tr>
-      <tr><td class="ticker">VXUS</td><td>Vanguard Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
-      <tr><td class="ticker">IXUS</td><td>iShares Core MSCI Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
-      <tr><td class="ticker">FTIHX</td><td>Fidelity Total International Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
+      <tr class="ticker-row" data-1y="~8-11%" data-5y="~4-5% avg/yr" data-10y="~4-5% avg/yr" data-note="International stocks have lagged the U.S. market for most of the last decade, which is exactly why some people hold both.">
+        <td class="ticker">VXUS</td><td>Vanguard Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
+      <tr class="ticker-row" data-1y="~8-11%" data-5y="~4-5% avg/yr" data-10y="~4-5% avg/yr" data-note="Tracks a very similar international index to VXUS.">
+        <td class="ticker">IXUS</td><td>iShares Core MSCI Total International Stock ETF</td><td>Broad international exposure ex-U.S.</td></tr>
+      <tr class="ticker-row" data-1y="~8-11%" data-5y="~4-5% avg/yr" data-10y="~4-5% avg/yr" data-note="Mutual fund version of the same international exposure.">
+        <td class="ticker">FTIHX</td><td>Fidelity Total International Index Fund</td><td>Mutual fund version, no Fidelity trading fee</td></tr>
     </table>
   </section>
 </main>
@@ -208,6 +293,34 @@
 <footer>
   🍉 same disclaimer applies here too — research before you invest 🍉
 </footer>
+
+<script>
+  document.querySelectorAll('tr.ticker-row').forEach(row => {
+    const detailRow = document.createElement('tr');
+    detailRow.className = 'detail-row';
+    const td = document.createElement('td');
+    td.colSpan = row.children.length;
+    const inner = document.createElement('div');
+    inner.className = 'detail-inner';
+    inner.innerHTML = `
+      <div class="hist-grid">
+        <div class="hist-stat"><div class="label">1 Year</div><div class="value">${row.dataset['1y']}</div></div>
+        <div class="hist-stat"><div class="label">5 Year</div><div class="value">${row.dataset['5y']}</div></div>
+        <div class="hist-stat"><div class="label">10 Year</div><div class="value">${row.dataset['10y']}</div></div>
+      </div>
+      <p class="hist-note">${row.dataset.note}</p>
+    `;
+    td.appendChild(inner);
+    detailRow.appendChild(td);
+    row.insertAdjacentElement('afterend', detailRow);
+
+    row.addEventListener('click', () => {
+      const isOpen = row.classList.toggle('open');
+      detailRow.classList.toggle('open', isOpen);
+      inner.style.maxHeight = isOpen ? inner.scrollHeight + 'px' : '0';
+    });
+  });
+</script>
 
 </body>
 </html>
