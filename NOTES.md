@@ -7,10 +7,11 @@ goofy animation + sound effect that plays when you hit calculate.
 
 Live at: https://distant0bserver.github.io/ariel-money-garden/
 
-Site files live in `docs/` (GitHub Pages is configured to deploy from `main` branch, `/docs` folder).
+Site files live at the repo root (GitHub Pages is configured to deploy from `main` branch, `/ (root)`).
+Local copy of this whole project lives at `C:\Users\user\Documents\docs\ariel-invest-site`.
 
 ## What we built today (2026-06-26)
-- Built `docs/index.html` as a single self-contained file (HTML + CSS + JS inline, no build step).
+- Built `index.html` as a single self-contained file (HTML + CSS + JS inline, no build step).
 - Three portfolio sections, each with a compounding interest calculator:
   - 🐒 "Don't Touch It" — low-risk savings/bonds, monkey-throwing-cash animation
   - 🛞 "Cruisin' Comfortably" — index fund mix, spinning rims animation
@@ -21,19 +22,20 @@ Site files live in `docs/` (GitHub Pages is configured to deploy from `main` bra
   past the **top**, then fall back down and out the bottom (unified `flyArc` CSS keyframe,
   driven by `--dx`, `--bounce`, `--fall`, `--rot` custom properties set in JS per emoji).
 - Two sound effects wired to play on calculate (user-supplied local mp3s, copied into
-  `docs/sounds/`): `got-your-money.mp3` plays immediately, `damn.mp3` plays ~0.7s later.
+  `sounds/`): `got-your-money.mp3` plays immediately, `damn.mp3` plays ~0.7s later.
 - Disclaimer text intentionally does NOT mention AI or describe the page as made by an
   "AI" or "watermelon-loving friend" — kept neutral/professional-sounding per request.
 - Default calculator values: $100,000 starting amount, $1,000/month contribution,
   across all three portfolios.
 - Repo: github.com/distant0bserver/ariel-money-garden, pushed to `main`, GitHub Pages
-  enabled (Deploy from branch → main → /docs).
+  enabled (Deploy from branch → main → / root).
 
 ## How to keep updating it
-- Edit `docs/index.html` directly (everything — markup, styles, script — is in that one file).
+- Local working copy: `C:\Users\user\Documents\docs\ariel-invest-site`.
+- Edit `index.html` directly (everything — markup, styles, script — is in that one file).
 - To change calculator defaults: search for `id="p1-principal"` etc. (p1/p2/p3 per portfolio).
 - To change animation behavior: look at `spawnFlying()` and the `flyArc` keyframe in the
   `<style>` block — duration/spread/rotation per animation type are set in `playAnimation()`.
-- To swap sound effects: replace the mp3 files in `docs/sounds/` (keep the same filenames,
+- To swap sound effects: replace the mp3 files in `sounds/` (keep the same filenames,
   or update the `<audio>` tag `src` attributes near the bottom of the file).
-- After editing, commit and push to `main` — GitHub Pages auto-redeploys from `/docs`.
+- After editing, commit and push to `main` — GitHub Pages auto-redeploys from root.
